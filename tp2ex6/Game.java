@@ -40,23 +40,29 @@ public class Game {
         initiateGamePlayers(money);
     }
 
+    private ArrayList<Player> clonePlayersList(ArrayList<Player> players){
+        ArrayList<Player> newPlayers = new ArrayList<>();
+        for (Player p : players){
+            newPlayers.add(p);
+        }
+        return newPlayers;
+    }
+
     public void playGame (){
         Scanner sc = new Scanner(System.in);
         String choise;
+        ArrayList <Player> playersbis = clonePlayersList(this.players);
         do {
-            ArrayList <Player> playersbis = this.players;
-            for (Player p : playersbis) {
+            for (Player p : this.players) {
                 System.out.println(p.getName()+" do you want to continue ? (y)es or (n)o");
                 choise = sc.nextLine();
                 if (choise.equals("n")){
                     playersbis.remove(p);
                 }
             }
-            if(playersbis.size() > 0) {
-                this.players = playersbis;
+                this.players = clonePlayersList(playersbis);
                 this.run = new Round(0, this.players);
                 this.players = run.playRound();
-            }
 
         } while (this.players.size() > 0);//tant que personne ne rage quit ou perd toute son argent le jeu continue
         System.out.println("Game is over");
