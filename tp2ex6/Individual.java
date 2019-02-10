@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public abstract class Individual {
     private ArrayList<Card> hand = new ArrayList<>();
-    private int valueHand;
+    protected int valueHand;
 
 
     public int getValueHand (){
@@ -19,5 +19,22 @@ public abstract class Individual {
         }
         this.hand.add(card);
         this.valueHand += card.getValue().getValue();//je sais, c'est moche mais ça me rapelle mon js <3
+    }
+
+    public void printHand (){
+        int i = 0;
+        for (Card c : this.hand){
+            i++;
+            System.out.print(i+"eme card : ");
+            c.printCard();
+        }
+        System.out.println("Your hand : "+this.valueHand);
+    }
+
+    public Card draw(){
+        Deck deck = new Deck();
+        Card card = deck.draw();
+        this.addCard(card);
+        return card;
     }
 }

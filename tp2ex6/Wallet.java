@@ -1,21 +1,21 @@
 package tp2ex6;
 
 public class Wallet {
-    private int chips;
+    private double chips;
 
     public Wallet (int money){
         this.chips = money;
     }
 
-    public void win (int money){
+    public void win (double money){
         this.chips += money;
     }
 
-    public void lose (int money){
+    public void lose (double money){
         this.chips -= money;
     }
 
-    public int getChips (){
+    public double getChips (){
         return this.chips;
     }
 }

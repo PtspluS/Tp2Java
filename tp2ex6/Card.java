@@ -26,4 +26,8 @@ public class Card {
     public void setColor(Color color) {
         this.color = color;
     }
+
+    public void printCard (){
+        System.out.println("Color : "+this.color+" | "+this.value+" => "+this.value.getValue());
+    }
 }

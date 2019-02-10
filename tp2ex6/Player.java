@@ -16,8 +16,8 @@ public class Player extends Individual {
     }
 
     //pas de seter de chips car leur nombre est gere par la classe Wallet
-    public int getChips (){
-        return this.chips.getChips();
+    public Wallet getChips (){
+        return this.chips;
     }
 
     public int getBet() {
@@ -26,5 +26,9 @@ public class Player extends Individual {
 
     public void setBet(int bet) {
         this.Bet = bet;
+    }
+
+    public void dontPlay(){
+        this.valueHand = 0;
     }
 }
