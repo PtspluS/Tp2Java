@@ -5,10 +5,10 @@ import java.util.Scanner;
 
 public class Round {
     private ArrayList<Player> players = new ArrayList<>();//car au vrai blackjack on peut jouer a plusieurs contre la banque
-    private Bank bank;
+    private Bank bank = new Bank();
     private int numRound;//manche actuelle ex : round 1
 
-    private int searchPlayerId(String name){//renvoie la position du joueur dans la liste
+    private int getPlayerPositionByName(String name){//renvoie la position du joueur dans la liste
         int posPlayer = -1;
         for (Player p : players){
             if(p.getName().equals(name)) {
@@ -18,7 +18,7 @@ public class Round {
         return posPlayer;
     }
 
-    private Player searchPlayer(String name){//renvoie le joueur
+    private Player getPlayerByName(String name){//renvoie le joueur
         for (Player p : players){
             if(p.getName().equals(name)) {
                return players.get(players.indexOf(p));
@@ -37,6 +37,10 @@ public class Round {
         this.numRound = numRound;
     }
 
+    public Round (){
+
+    }
+
     public Round (int numRound, ArrayList<Player> players){//si on joue a plusieurs
         this.numRound = numRound;
         this.players = players;
@@ -48,7 +52,8 @@ public class Round {
     }
 
     public ArrayList<Player> playRound (){
-        //on fait jouer la bank en premier pour donner la 1ere carte de la banque
+        //on fait jouer la bank en premier pour donner la 1ere carte de la bank
+        bank.clearHand();
         bank.draw();
         bank.printHand();
 
@@ -59,18 +64,20 @@ public class Round {
             System.out.println("It's the turn of : "+p.getName());
             System.out.print("Bank hand value is equal to ");
             bank.printHand();
-            System.out.println("How do you want to bet ?....You have "+p.getChips()+"$ yet (0 to skip)");
+            System.out.println("How do you want to bet ?....You have "+p.getChips().getChips()+"$ yet (0 to skip)");
             bet = sc.nextInt();
             System.out.println("You bet : "+bet+"$");
             p.setBet(bet);
             if(bet != 0) {
+                p.clearHand();
                 p.draw();
                 p.draw();
                 p.printHand();
+                sc.nextLine();
                 if(p.getValueHand() != 21) {
                     System.out.println("Do you want to draw a other card ? (y)es or (n)o");
                     choise = sc.nextLine();
-                    while (choise != "n" && p.getValueHand() != 21) {
+                    while (choise.equals("y") && p.getValueHand() != 21) {
                         p.draw();
                         p.printHand();
                         System.out.println("Do you want to draw a other card ? (y)es or (n)o");
@@ -110,11 +117,11 @@ public class Round {
             bank.printHand();
         }
 
-        for (Player p : players){
-            if (p.getValueHand()< bank.getValueHand()) {
+        for (Player p : this.players){
+            if (p.getValueHand()< bank.getValueHand() && bank.getValueHand()<=21) {
                 p.getChips().lose(p.getBet());
                 if (p.getValueHand() <= 0) {
-                    players.remove(p);
+                    this.players.remove(p);
                     System.out.println(p.getName() + " a perdu");
                 }
             }else {

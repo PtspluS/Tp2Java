@@ -37,4 +37,9 @@ public abstract class Individual {
         this.addCard(card);
         return card;
     }
+
+    public void clearHand(){
+        this.hand.clear();
+        this.valueHand = 0;
+    }
 }

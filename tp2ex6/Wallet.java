@@ -18,4 +18,8 @@ public class Wallet {
     public double getChips (){
         return this.chips;
     }
+
+    public void setChips (int c){
+        this.chips = (double) c;
+    }
 }
