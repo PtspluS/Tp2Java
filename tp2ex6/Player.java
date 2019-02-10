@@ -3,7 +3,7 @@ package tp2ex6;
 public class Player extends Individual {
     private Wallet chips;
     private String name;
-    private int Bet;
+    private int bet;
 
     public Player (String name, int money){
         this.name = name;
@@ -21,11 +21,11 @@ public class Player extends Individual {
     }
 
     public int getBet() {
-        return this.Bet;
+        return this.bet;
     }
 
     public void setBet(int bet) {
-        this.Bet = bet;
+        this.bet = bet;
     }
 
     public void dontPlay(){

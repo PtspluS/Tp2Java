@@ -8,8 +8,8 @@ public class Deck {
     public Deck (){
         for (Color c : Color.values()){
             for (Value v : Value.values()){
-                Card t = new Card(c,v);
-                this.deck.add(t);
+                //Card t = new Card(c,v);
+                this.deck.add(new Card(c,v));
             }
         }
 

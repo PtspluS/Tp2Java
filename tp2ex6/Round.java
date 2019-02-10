@@ -11,7 +11,7 @@ public class Round {
     private int searchPlayerId(String name){//renvoie la position du joueur dans la liste
         int posPlayer = -1;
         for (Player p : players){
-            if(p.getName()==name) {
+            if(p.getName().equals(name)) {
                 posPlayer = players.indexOf(p);
             }
         }
@@ -20,7 +20,7 @@ public class Round {
 
     private Player searchPlayer(String name){//renvoie le joueur
         for (Player p : players){
-            if(p.getName()==name) {
+            if(p.getName().equals(name)) {
                return players.get(players.indexOf(p));
             }
         }
@@ -47,7 +47,7 @@ public class Round {
         this.players.add(p);
     }
 
-    public void playRound (){
+    public ArrayList<Player> playRound (){
         //on fait jouer la bank en premier pour donner la 1ere carte de la banque
         bank.draw();
         bank.printHand();
@@ -121,6 +121,7 @@ public class Round {
                 p.getChips().win(p.getBet());//on ne gagne qu'une fois la mise car on ne la perd pas de suite en la misant
             }
         }
+        return this.players;//On renvoit la liste de joueur encore en lice
     }
 
 }

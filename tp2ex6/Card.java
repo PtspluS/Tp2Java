@@ -6,8 +6,8 @@ public class Card {
     private Color color;
             
     public Card (Color c, Value v){
-        this.setColor(c);
-        this.setValue(v);
+        this.color = c;
+        this.value = v;
     }
 
 
