@@ -2,6 +2,7 @@ package tp2;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import static java.util.Collections.reverseOrder;
 
 public class Etudiant extends Individu{
             
@@ -16,8 +17,7 @@ public class Etudiant extends Individu{
     }
     
     public void triNoteD (){
-        Collections.sort(this.notes);
-        Collections.reverse(this.notes);
+        Collections.sort(this.notes, reverseOrder());
     }
     
 }
